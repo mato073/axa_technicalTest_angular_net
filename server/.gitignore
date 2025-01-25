@@ -1,0 +1,135 @@
+###############################################################################
+# OS generated files
+###############################################################################
+*.DS_Store
+*.AppleDouble
+*.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+
+# Linux
+.*.swp
+.*.swo
+
+# Icon?
+*.ico
+
+###############################################################################
+# Visual Studio & .NET build files
+###############################################################################
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+[Bb]in/
+[Oo]bj/
+test_results/
+
+# Visual Studio cache files
+.vs/
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+
+###############################################################################
+# Visual Studio Code
+###############################################################################
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+###############################################################################
+# Rider / Resharper
+###############################################################################
+*.DotSettings.user
+.ReSharper
+*.sln.iml
+.idea/
+
+###############################################################################
+# NuGet
+###############################################################################
+*.nupkg
+# The packages folder can be ignored if you enable "Package Restore" in Visual Studio
+**/packages/*
+# Uncomment if necessary
+# Packages/*
+# Project.lock.json is used by .NET projects (lockfile approach)
+project.lock.json
+# Older NuGet files
+*.nuget.props
+*.nuget.targets
+
+###############################################################################
+# Microsoft Azure Build Output
+###############################################################################
+csx/
+*.build.csdef
+*.build.csx
+*.build.cscfg
+
+###############################################################################
+# Publish / Deployment
+###############################################################################
+publish/
+*.Publish.xml
+AppPackages/
+*.appx
+*.appxbundle
+*.appxupload
+*.build.appxrecipe
+[Ww][Ww][Ww][Rr][Oo][Oo][Tt]/
+*.[Cc]ache/
+*.zip
+
+###############################################################################
+# Logs, Database, and Misc
+###############################################################################
+*.log
+*.sql
+*.sqlite
+*.mdf
+*.ldf
+*.ndf
+*.pid
+*.suo
+
+###############################################################################
+# Other files and folders to consider ignoring
+###############################################################################
+# node_modules if using Node-based tooling (e.g., for frontend in the same repo)
+node_modules/
+bower_components/
+# Yarn
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# Optional: If you have secrets or config files you don’t want to commit
+# secrets.json
+# appsettings.*.json
+
+###############################################################################
+# End of file
+###############################################################################
