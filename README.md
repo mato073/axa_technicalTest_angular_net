@@ -50,14 +50,62 @@ This project is a **Task Manager** application built as part of a technical test
 1. Clone the repository:
    ```bash
    git clone
-1. Create a new Database SQL server
+2. Create a new Database SQL server
     Save the connection string for latter
-1. User the SQL_AXA.sql file
+3. User the SQL_AXA.sql file
     To set up the database affter creating a new one (You can use Azure data studio);
-1. Configure the appsettings.json file:
+4. Configure the appsettings.json file:
     Update the ConnectionStrings section with your SQL Server details.
    cd ./server
-1. 
-   cd <backend-folder>
-1. Start the backend server:
-   ```dotnet run ```
+5. Start the backend server:
+   ```bash
+    dotnet watch run
+6. The sever should automatical open a window 
+    in case it's not the case go to (http://localhost:5000/swagger)
+
+## Installation and Setup
+### FrontEnd:
+2. Install packages
+    ```bash
+    npm install
+3. Start the project
+     ```bash
+   ng serve
+6. Open Browser
+    go to link: (http://localhost:4200)
+
+    # Usage
+
+## Register a New User:
+- Navigate to the `/register` page.
+- Create an account to access the application.
+
+## Login:
+- Use the `/` (login) page to authenticate and gain access.
+
+## Manage Tasks:
+- Create, update, and delete tasks from the dashboard.
+- Mark tasks as completed or manage their statuses.
+
+## Token Management:
+- The app automatically refreshes the token for authenticated users.
+
+## Swagger display of all api routes
+<p align="center">
+  <img src="./Pictures/api.png" width="450" title="hover text">
+</p>
+
+## Login Page
+<p align="center">
+  <img src="./Pictures/login.png" width="450" title="hover text">
+</p>
+
+## Register Page
+<p align="center">
+  <img src="./Pictures/register.png" width="450" title="hover text">
+</p>
+
+## Home Page
+<p align="center">
+  <img src="./Pictures/home.png" width="450" title="hover text">
+</p>
