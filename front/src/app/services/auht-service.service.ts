@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuhtService {
 
-  private readonly tokenKey = '';
+  private readonly tokenKey = 'token';
   private apiUrl = 'http://localhost:5000/Auht';
 
   constructor(private http: HttpClient) { }
@@ -25,6 +25,7 @@ export class AuhtService {
   // --- Logout ---
   logout(): void {
     localStorage.removeItem(this.tokenKey);
+
   }
 
   // --- Token Handling ---
@@ -39,6 +40,23 @@ export class AuhtService {
   // --- Check if user is logged in ---
   isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+
+  refrechToken() {
+    const token = this.getToken();
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get(`${this.apiUrl}/RefreshToken`, { headers }).subscribe((res: any) => {
+      const { token } = res
+      localStorage.setItem(this.tokenKey, token);
+    },
+      (err) => {
+        console.error("Expired token")
+        this.logout();
+      }
+    )
   }
 
 }

@@ -16,9 +16,9 @@ export class TaskService {
   ) { }
 
   private handelDate(date: string) {
-    const inputDate = "31/01/2025";
-    const [day, month, year] = inputDate.split('/').map(Number);
-    const newtdate = new Date(Date.UTC(year, month - 1, day, 10, 13, 56, 51)); // Setting time to 10:13:56.051
+    const [year, month, day] = date.split('-').map(Number);
+    const newtdate = new Date(Date.UTC(year, month, day, 10, 13, 56, 51));
+    console.log(newtdate)
     const formattedDate = newtdate.toISOString();
 
     return formattedDate

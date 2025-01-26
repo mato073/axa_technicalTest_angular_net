@@ -12,6 +12,7 @@ import { Task, NewTask } from '../types/task.model';
 import { TaskService } from '../services/task.service';
 import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuhtService } from '../services/auht-service.service';
 
 @Component({
   selector: 'app-home',
@@ -34,6 +35,7 @@ export class HomeComponent {
     private taskService: TaskService,
     private userService: UserService,
     private toastr: ToastrService,
+    private authService: AuhtService
   ) { }
 
   tasks: Task[] = [];
@@ -47,8 +49,8 @@ export class HomeComponent {
   selectedTask: number = 0
 
   ngOnInit(): void {
+    this.authService.refrechToken();
     this.getAllTasks();
-
     this.userService.getUser().subscribe((user: User) => {
       this.user = user;
     })
