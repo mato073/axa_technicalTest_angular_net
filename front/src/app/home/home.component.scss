@@ -1,0 +1,97 @@
+.home {
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 3em;
+
+        &-action {
+            button {
+                border: none;
+                background: none;
+                font-size: 25px;
+                cursor: pointer;
+                border-radius: 5px;
+                padding: 10px;
+                border: 2px solid #0A9D58;
+                color: #0A9D58;
+            }
+
+            button:hover {
+                background-color: #0A9D58;
+                color: white;
+            }
+        }
+    }
+
+    .tasks {
+        padding: 3em;
+
+        .tasks-elements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+        }
+
+        app-task {
+            flex: 1 1 calc(33.33% - 1em);
+            max-width: calc(33.33% - 1em);
+        }
+    }
+
+    .dialog {
+        background: none;
+        border: none;
+    }
+
+    .deleteContent {
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &-text {
+            margin-top: 40px;
+            color: red;
+            font-size: 1em;
+            flex: 0.5;
+        }
+
+        &-action {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+
+            button {
+        
+                font-size: 1.3em;
+                border: none;
+                border-radius: 5px;
+                padding: 10px;
+                background: none;
+                cursor: pointer;
+            }
+
+            .confirme {
+                border: 1px solid #0A9D58;
+                color: #0A9D58;
+            }
+
+            .confirme:hover {
+                background-color: #0A9D58;
+                color: white;
+            }
+
+            .cancel {
+                color: #D32F2F;
+                border: 1px solid #D32F2F;
+            }
+
+            .cancel:hover {
+                background-color: #D32F2F;
+                color: white;
+            }
+        }
+    }
+}

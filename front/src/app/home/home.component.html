@@ -1,0 +1,40 @@
+<app-header [user]="user"></app-header>
+<div class="home">
+    <section class="home-header">
+        <div>
+            <h1>Welcome To Your Task Manager, {{user.name}}</h1>
+            <p>Here you can manage your tasks</p>
+        </div>
+        <div class="home-header-action">
+            <button (click)="openDialog()">New Task</button>
+        </div>
+    </section>
+    <section class="tasks">
+        <div>
+            <h2>Tasks</h2>
+            <div class="tasks-elements">
+                <div *ngFor="let task of tasks">
+                    <app-task
+                        [completeTask]="completeTask.bind(this)" 
+                        [openDialogDelete]="openDialogDelete.bind(this)"
+                        [openDialog]="openDialog.bind(this)"
+                        [taskData]="task">
+                    </app-task>
+                </div>
+            </div>
+        </div>
+    </section>
+    <app-dialog #dialogTask>
+        <app-form-task [Task]="selectedTaskForUpdate" [newTask]="newTask.bind(this)"
+            [updateTask]="updateTask.bind(this)"></app-form-task>
+    </app-dialog>
+    <app-dialog #dialogTaskDelete>
+        <div class="deleteContent">
+            <p class="deleteContent-text">Are you sure you want to delete this task ?</p>
+            <div class="deleteContent-action">
+                <button class="cancel" (click)="handleClose()">Cancel</button>
+                <button class="confirme" (click)="deleteTask()">Confirm</button>
+            </div>
+        </div>
+    </app-dialog>
+</div>

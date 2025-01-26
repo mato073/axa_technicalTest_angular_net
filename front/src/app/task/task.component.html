@@ -1,0 +1,25 @@
+<div class="task_element" [ngClass]="{'completed-task': taskData.isCompleted}">
+    <div>
+        <div>
+            <div>
+                <div class="task_element-header">
+                    <span>DueDate</span>
+                    <span>{{taskData.dueDate}}</span>
+                </div>
+                <div>
+                    <h3>{{taskData.title}}</h3>
+                </div> 
+                <p>{{taskData.description}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="task_element-bottom">
+        <div class="task_element-bottom-action">
+            <button (click)="openForUpdate()" class="task-button edit">Edit</button>
+            <button (click)="open()"  class="task-button delete">Delete</button>
+        </div>
+        <div>
+            <button (click)="complete()" class="task-button done">Complete</button>
+        </div>
+    </div>
+</div>

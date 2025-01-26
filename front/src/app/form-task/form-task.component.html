@@ -1,0 +1,43 @@
+<div class="newTask">
+    <section>
+      <form #newTaskForm="ngForm" (ngSubmit)="taskHandler(newTaskForm)">
+        <h1>{{ Task ? 'Edit Task' : 'Create New Task' }}</h1>
+        <div>
+          <label for="title">Title</label>
+          <input
+            [(ngModel)]="formdata.title"
+            required
+            type="text"
+            id="title"
+            name="title"
+          />
+        </div>
+        <div>
+          <label for="description">Description</label>
+          <textarea
+            [(ngModel)]="formdata.description"
+            required
+            id="description"
+            name="description"
+          ></textarea>
+        </div>
+        <div>
+          <label>DueDate</label>
+          <input
+            [(ngModel)]="formdata.dueDate"
+            required
+            type="date"
+            name="dueDate"
+          />
+        </div>
+        <button
+          [disabled]="!newTaskForm.valid"
+          class="action"
+          type="submit"
+        >
+          Save
+        </button>
+      </form>
+    </section>
+  </div>
+  

@@ -46,7 +46,11 @@ public class TaskController : ControllerBase
         bool result = _dapper.ExecuteSql(sql);
         if (result)
         {
-            return Ok("Task Created Successfully");
+
+            return Ok(new
+            {
+                message = "Task successfully created"
+            });
         }
         throw new Exception("Faild to create task");
     }
@@ -57,8 +61,8 @@ public class TaskController : ControllerBase
         string sqlCheckTaskExist = @"
         SELECT [TaskId] FROM TurorialAppSchema.UserTasks WHERE TaskId = "
         + values.TaskId.ToString();
-        string taskIdFromDB = _dapper.loadDataSingle<string>(sqlCheckTaskExist) 
-        ?? 
+        string taskIdFromDB = _dapper.loadDataSingle<string>(sqlCheckTaskExist)
+        ??
         throw new Exception("Task not found");
 
         string userId = this.User.FindFirst("userId")?.Value + "";
@@ -72,7 +76,10 @@ public class TaskController : ControllerBase
 
         if (_dapper.ExecuteSql(sql))
         {
-            return Ok("Task Updated Successfully");
+               return Ok(new
+            {
+                message = "Task successfully updated"
+            });
         }
 
         throw new Exception("Faild to update task");
@@ -91,7 +98,10 @@ public class TaskController : ControllerBase
         string sql = @"DELETE FROM TurorialAppSchema.UserTasks WHERE TaskId = " + taskIdFromDB;
         if (_dapper.ExecuteSql(sql))
         {
-            return Ok("Task Deleted Successfully");
+               return Ok(new
+            {
+                message = "Task successfully deleted"
+            });
         }
         throw new Exception("Faild to delete task");
     }

@@ -72,7 +72,9 @@ public class AuhtController : ControllerBase
 
             if (_dapper.ExecuteSql(SqlAddUser))
             {
-                return Ok("User Created Successfully");
+                return Ok(new {
+                    message = "User successfully created"
+                });
             }
             throw new Exception("Failed to create user");
         }

@@ -1,0 +1,57 @@
+<section class="login">
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+      <h1>Login</h1>
+  
+      <div>
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          name="email" 
+          ngModel 
+          required
+          #emailInput="ngModel"
+        />
+        <div *ngIf="emailInput.invalid && emailInput.touched" class="error">
+          <small *ngIf="emailInput.errors?.['required']">Email is required.</small>
+          <small *ngIf="emailInput.errors?.['email']">Invalid email format.</small>
+        </div>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          name="password" 
+          ngModel 
+          required
+          #passwordInput="ngModel"
+        />
+        <div *ngIf="passwordInput.invalid && passwordInput.touched" class="error">
+          <small *ngIf="passwordInput.errors?.['required']">Password is required.</small>
+        </div>
+      </div>
+  
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="error">
+        <small>{{ errorMessage }}</small>
+      </div>
+  
+      <!-- Submit Button -->
+      <button 
+        class="action" 
+        type="submit" 
+        [disabled]="!loginForm.valid">
+        Login
+      </button>
+  
+      <span class="spacer">or</span>
+  
+      <!-- Register Button -->
+      <div>
+        <button 
+          (click)="goToRegister()" 
+          class="navigate">
+          Register
+        </button>
+      </div>
+    </form>
+  </section>
