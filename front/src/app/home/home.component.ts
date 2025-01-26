@@ -143,9 +143,7 @@ export class HomeComponent {
   }
 
   completeTask(task: Task) {
-    console.log(task)
     task.isCompleted = true;
-    console.log("task", task)
     this.taskService.updateTask(task).subscribe((res) => {
       if (res.message == "Task successfully updated") {
         this.toastr.success('Task completed');

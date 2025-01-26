@@ -2,17 +2,7 @@
     display: flex;
     justify-content: center;
     margin: 2rem auto;
-    max-width: 400px; 
 
-    .close {
-      border: none;
-      background: none ;
-      font-size: 2em;
-      height: fit-content;
-      width: fit-content;
-      align-self: end;
-      cursor: pointer;
-    }
   
     form {
       display: flex;
@@ -66,6 +56,15 @@
         &:focus {
           outline: none;
         }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .newTask {
+      width: 100%;
+      form {
+        width: 100%;
       }
     }
   }

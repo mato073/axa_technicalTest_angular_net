@@ -31,7 +31,7 @@ public class AuhtController : ControllerBase
         if (RegistrationValues.Password != RegistrationValues.PasswordConfirmation)
             throw new Exception("Passwords do not match");
 
-        string sql = "SELECT * FROM  TurorialAppSchema.Auht WHERE Email = '" + RegistrationValues.Email + "'";
+        string sql = "SELECT * FROM  AxaTechnicalTestSchema.Auht WHERE Email = '" + RegistrationValues.Email + "'";
         IEnumerable<string> existingUsers = _dapper.loadData<string>(sql);
 
         if (existingUsers.Count() != 0)
@@ -46,7 +46,7 @@ public class AuhtController : ControllerBase
         byte[] passwordHash = _authHelper.GetPasswordHash(RegistrationValues.Password, passwordSalt);
 
         string sqlAddAuth = @"
-                INSERT INTO TurorialAppSchema.Auht  ([Email],
+                INSERT INTO AxaTechnicalTestSchema.Auht  ([Email],
                 [PasswordHash],
                 [PasswordSalt]) VALUES ('" + RegistrationValues.Email +
                 "', @PasswordHash, @PasswordSalt)";
@@ -63,7 +63,7 @@ public class AuhtController : ControllerBase
         sqlParameters.Add(passwordHashParameter);
         if (_dapper.ExecuteSqlWithParameters(sqlAddAuth, sqlParameters))
         {
-            string SqlAddUser = @"INSERT INTO TurorialAppSchema.Users (
+            string SqlAddUser = @"INSERT INTO AxaTechnicalTestSchema.Users (
                 Name,
                 Email
                 ) VALUES ('" + RegistrationValues.Name
@@ -88,7 +88,7 @@ public class AuhtController : ControllerBase
 
         string sqlForHasAndSalt = @"SELECT 
                 [PasswordHash],
-                [PasswordSalt] FROM TurorialAppSchema.Auht WHERE Email = '" +
+                [PasswordSalt] FROM AxaTechnicalTestSchema.Auht WHERE Email = '" +
                  LoginValues.Email + "'";
 
         LoginConfirmationDto confirmation = _dapper.loadDataSingle<LoginConfirmationDto>(sqlForHasAndSalt);
@@ -103,7 +103,7 @@ public class AuhtController : ControllerBase
                 return StatusCode(401, "Login Failed");
         }
         string userIdSql = @"
-            SELECT UserId FROM TurorialAppSchema.Users WHERE Email = '" 
+            SELECT UserId FROM AxaTechnicalTestSchema.Users WHERE Email = '" 
             + LoginValues.Email + "'";
         int userId = _dapper.loadDataSingle<int>(userIdSql);
 
@@ -116,7 +116,7 @@ public class AuhtController : ControllerBase
     public IActionResult RefreshToken()
     {
         string userId = User.FindFirst("userId")?.Value + "";
-        string sql = "SELECT UserId FROM TurorialAppSchema.Users WHERE UserId = " + userId;
+        string sql = "SELECT UserId FROM AxaTechnicalTestSchema.Users WHERE UserId = " + userId;
         int userIdFromDB = _dapper.loadDataSingle<int>(sql);
         if (userIdFromDB == 0)
             return StatusCode(401, "Invalid Token");

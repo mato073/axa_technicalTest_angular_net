@@ -21,7 +21,7 @@ public class TaskController : ControllerBase
     [HttpGet("GetTaskById/{id}")]
     public UserTask GetTaskById(int id)
     {
-        string sql = @"SELECT * FROM TurorialAppSchema.UserTasks WHERE TaskId = " + id.ToString();
+        string sql = @"SELECT * FROM AxaTechnicalTestSchema.UserTasks WHERE TaskId = " + id.ToString();
         UserTask response = _dapper.loadDataSingle<UserTask>(sql);
         return response;
     }
@@ -30,7 +30,7 @@ public class TaskController : ControllerBase
     public IActionResult CreateTask(CreateUserTaskDto task)
     {
         string userId = this.User.FindFirst("userId")?.Value + "";
-        string sql = @"INSERT INTO TurorialAppSchema.UserTasks (
+        string sql = @"INSERT INTO AxaTechnicalTestSchema.UserTasks (
                 Title,
                 Description,
                 DueDate,
@@ -59,14 +59,14 @@ public class TaskController : ControllerBase
     public IActionResult UpdateTask(EditUserTaskDto values)
     {
         string sqlCheckTaskExist = @"
-        SELECT [TaskId] FROM TurorialAppSchema.UserTasks WHERE TaskId = "
+        SELECT [TaskId] FROM AxaTechnicalTestSchema.UserTasks WHERE TaskId = "
         + values.TaskId.ToString();
         string taskIdFromDB = _dapper.loadDataSingle<string>(sqlCheckTaskExist)
         ??
         throw new Exception("Task not found");
 
         string userId = this.User.FindFirst("userId")?.Value + "";
-        string sql = @"UPDATE TurorialAppSchema.UserTasks SET
+        string sql = @"UPDATE AxaTechnicalTestSchema.UserTasks SET
                 Title = '" + values.Title
                 + "', description = '" + values.Description
                 + "', dueDate = '" + values.DueDate.ToString("yyyy-MM-dd HH:mm:ss")
@@ -90,12 +90,12 @@ public class TaskController : ControllerBase
     public IActionResult DeleteTask(int TaskId)
     {
         string sqlCheckTaskExistAndBelongToUser = @"
-        SELECT [TaskId] FROM TurorialAppSchema.UserTasks WHERE TaskId = "
+        SELECT [TaskId] FROM AxaTechnicalTestSchema.UserTasks WHERE TaskId = "
         + TaskId.ToString() + " AND UserId = " + this.User.FindFirst("userId")?.Value;
         string taskIdFromDB = _dapper.loadDataSingle<string>(sqlCheckTaskExistAndBelongToUser)
         ??
         throw new Exception("Task not found or not belong to user");
-        string sql = @"DELETE FROM TurorialAppSchema.UserTasks WHERE TaskId = " + taskIdFromDB;
+        string sql = @"DELETE FROM AxaTechnicalTestSchema.UserTasks WHERE TaskId = " + taskIdFromDB;
         if (_dapper.ExecuteSql(sql))
         {
                return Ok(new
@@ -110,7 +110,7 @@ public class TaskController : ControllerBase
     public IEnumerable<UserTask> GetAllTasks(int UserId)
     {
         string userId = this.User.FindFirst("userId")?.Value + "";
-        string sql = @"SELECT * FROM TurorialAppSchema.UserTasks WHERE UserId = " + userId;
+        string sql = @"SELECT * FROM AxaTechnicalTestSchema.UserTasks WHERE UserId = " + userId;
         IEnumerable<UserTask> tasks = _dapper.loadData<UserTask>(sql);
         return tasks;
     }

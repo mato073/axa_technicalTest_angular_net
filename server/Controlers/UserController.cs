@@ -23,7 +23,7 @@ public class UserController : ControllerBase
     public User GetUserById()
     {
         string userId = this.User.FindFirst("userId")?.Value + "";
-        string sql = @"SELECT * FROM TurorialAppSchema.Users WHERE UserId = " + userId;
+        string sql = @"SELECT * FROM AxaTechnicalTestSchema.Users WHERE UserId = " + userId;
         User user = _dapper.loadDataSingle<User>(sql);
         return user;
     }

@@ -95,3 +95,14 @@
         }
     }
 }
+
+@media (max-width: 600px) {
+
+    .home-header {
+        flex-direction: column;
+    }
+    .tasks-elements{
+        align-items: center;
+        justify-content: center;
+    }
+}

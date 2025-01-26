@@ -45,7 +45,7 @@ This project is a **Task Manager** application built as part of a technical test
 
 ---
 
-## Installation and Setup
+## Installation and Setup BackEnd
 ### Backend:
 1. Clone the repository:
    ```bash
@@ -63,7 +63,7 @@ This project is a **Task Manager** application built as part of a technical test
 6. The sever should automatical open a window 
     in case it's not the case go to (http://localhost:5000/swagger)
 
-## Installation and Setup
+## Installation and Setup FrontEnd
 ### FrontEnd:
 2. Install packages
     ```bash

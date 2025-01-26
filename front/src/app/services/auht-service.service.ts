@@ -2,13 +2,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { environment } from '../../environment/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuhtService {
 
   private readonly tokenKey = 'token';
-  private apiUrl = 'http://localhost:5000/Auht';
+  private apiUrl = `${environment.apiUrl}/Auht`;
 
   constructor(private http: HttpClient) { }
 

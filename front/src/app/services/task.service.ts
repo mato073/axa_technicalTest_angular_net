@@ -4,24 +4,38 @@ import { Observable } from 'rxjs';
 import { AuhtService } from './auht-service.service';
 import { Task, NewTask } from '../types/task.model';
 
+import { environment } from '../../environment/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = environment.apiUrl;
   constructor(
     private http: HttpClient,
     private authService: AuhtService,
   ) { }
 
   private handelDate(date: string) {
-    const [year, month, day] = date.split('-').map(Number);
-    const newtdate = new Date(Date.UTC(year, month, day, 10, 13, 56, 51));
-    console.log(newtdate)
-    const formattedDate = newtdate.toISOString();
+    const ddMMyyyyRegex = /^\d{2}\/\d{2}\/\d{4}$/; // Matches DD/MM/YYYY
+    const yyyyMMddRegex = /^\d{4}-\d{2}-\d{2}$/;
 
-    return formattedDate
+    if (ddMMyyyyRegex.test(date)) {
+      const [day, month, year] = date.split('/').map(Number);
+      const newtdate = new Date(Date.UTC(year, month, day, 10, 13, 56, 51));
+      console.log(newtdate)
+      const formattedDate = newtdate.toISOString();
+
+      return formattedDate
+    } else if (yyyyMMddRegex.test(date)) {
+      const [year, month, day] = date.split('-').map(Number);
+      const newtdate = new Date(Date.UTC(year, month, day, 10, 13, 56, 51));
+      console.log(newtdate)
+      const formattedDate = newtdate.toISOString();
+      return formattedDate
+    }
+    return '31/01/2025'
   }
 
   getAllTasks(): Observable<any> {

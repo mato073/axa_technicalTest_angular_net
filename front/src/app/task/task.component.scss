@@ -17,6 +17,10 @@
         font-size: 17px;
     }
 
+    p {
+        overflow-wrap: break-word;
+    }
+
     &-bottom {
         display: flex;
         justify-content: space-between;
@@ -77,3 +81,4 @@
         }
     }
 }
+
