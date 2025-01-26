@@ -5,12 +5,13 @@
       <div>
         <label for="email">Email</label>
         <input 
-          type="email" 
-          name="email" 
-          ngModel 
-          required
-          #emailInput="ngModel"
-        />
+        type="email" 
+        name="email" 
+        ngModel 
+        required
+        email
+        #emailInput="ngModel"
+      />
         <div *ngIf="emailInput.invalid && emailInput.touched" class="error">
           <small *ngIf="emailInput.errors?.['required']">Email is required.</small>
           <small *ngIf="emailInput.errors?.['email']">Invalid email format.</small>
@@ -29,13 +30,10 @@
           <small *ngIf="passwordInput.errors?.['required']">Password is required.</small>
         </div>
       </div>
-  
-      <!-- Error Message -->
       <div *ngIf="errorMessage" class="error">
         <small>{{ errorMessage }}</small>
       </div>
-  
-      <!-- Submit Button -->
+
       <button 
         class="action" 
         type="submit" 

@@ -31,7 +31,6 @@ export class LoginComponent {
       this.errorMessage = 'Please fill in all required fields correctly.';
       return;
     }
-    console.log("googd")
 
     this.authService.login(form.value).subscribe(
       (res) => {

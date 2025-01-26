@@ -1,5 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NewTask, Task } from '../types/task.model';
+import { CommonModule } from '@angular/common';
+
 import { NgForm, FormsModule } from '@angular/forms';
 
 @Component({
@@ -7,6 +9,7 @@ import { NgForm, FormsModule } from '@angular/forms';
   standalone: true, // Assuming standalone component
   imports: [
     FormsModule,
+    CommonModule
   ],
   templateUrl: './form-task.component.html',
   styleUrls: ['./form-task.component.scss'], // Correct property
@@ -21,6 +24,7 @@ export class FormTaskComponent implements OnChanges {
     description: '',
     dueDate: '',
   };
+  errorMessage = ""
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['Task'] && changes['Task'].currentValue) {
@@ -40,6 +44,10 @@ export class FormTaskComponent implements OnChanges {
   }
 
   taskHandler(form: NgForm) {
+    if (form.invalid) {
+      this.errorMessage = 'Please fill in all required fields correctly.';
+      return;
+    }
     if (!this.Task) {
       this.createNewTask(form);
     } else {

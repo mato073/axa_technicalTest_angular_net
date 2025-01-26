@@ -5,30 +5,47 @@
         <div>
           <label for="title">Title</label>
           <input
-            [(ngModel)]="formdata.title"
+            ngModel 
             required
             type="text"
             id="title"
             name="title"
+            maxlength="50"
+            #titleInput="ngModel"
           />
+          <div *ngIf="titleInput.invalid && titleInput.touched" class="error">
+            <small *ngIf="titleInput.errors?.['required']">Title is required.</small>
+          </div>
         </div>
         <div>
           <label for="description">Description</label>
           <textarea
-            [(ngModel)]="formdata.description"
+            ngModel
             required
             id="description"
             name="description"
+            maxlength="250"
+            #descriptionInput="ngModel"
           ></textarea>
+          <div *ngIf="descriptionInput.invalid && descriptionInput.touched" class="error">
+            <small *ngIf="descriptionInput.errors?.['required']">Description is required.</small>
+          </div>
         </div>
         <div>
           <label>DueDate</label>
           <input
-            [(ngModel)]="formdata.dueDate"
+            ngModel
             required
             type="date"
             name="dueDate"
+            #dateInput="ngModel"
           />
+          <div *ngIf="dateInput.invalid && dateInput.touched" class="error">
+            <small *ngIf="dateInput.errors?.['required']">Date is required.</small>
+          </div>
+        </div>
+        <div *ngIf="errorMessage" class="error">
+          <small>{{ errorMessage }}</small>
         </div>
         <button
           [disabled]="!newTaskForm.valid"
