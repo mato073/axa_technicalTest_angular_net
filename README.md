@@ -48,8 +48,6 @@ This project is a **Task Manager** application built as part of a technical test
 ## Installation and Setup BackEnd
 ### Backend:
 1. Clone the repository:
-   ```bash
-   git clone
 2. Create a new Database SQL server
     Save the connection string for latter
 3. User the SQL_AXA.sql file
@@ -57,10 +55,13 @@ This project is a **Task Manager** application built as part of a technical test
 4. Configure the appsettings.json file:
     Update the ConnectionStrings section with your SQL Server details.
    cd ./server
-5. Start the backend server:
+5. Install packages
+   ```bash
+         dotnet restore
+6. Start the backend server:
    ```bash
     dotnet watch run
-6. The sever should automatical open a window 
+7. The sever should automatical open a window 
     in case it's not the case go to (http://localhost:5000/swagger)
 
 ## Installation and Setup FrontEnd
