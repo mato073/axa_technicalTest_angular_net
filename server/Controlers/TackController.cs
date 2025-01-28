@@ -21,7 +21,8 @@ public class TaskController : ControllerBase
     [HttpGet("GetTaskById/{id}")]
     public UserTask GetTaskById(int id)
     {
-        string sql = @"SELECT * FROM AxaTechnicalTestSchema.UserTasks WHERE TaskId = " + id.ToString();
+        string userId = this.User.FindFirst("userId")?.Value + "";
+        string sql = @"SELECT * FROM AxaTechnicalTestSchema.UserTasks WHERE TaskId = " + id.ToString() + "AND userId = " + userId;
         UserTask response = _dapper.loadDataSingle<UserTask>(sql);
         return response;
     }
