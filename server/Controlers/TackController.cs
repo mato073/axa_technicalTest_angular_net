@@ -19,12 +19,15 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet("GetTaskById/{id}")]
-    public UserTask GetTaskById(int id)
+    public IActionResult GetTaskById(int id)
     {
         string userId = this.User.FindFirst("userId")?.Value + "";
         string sql = @"SELECT * FROM AxaTechnicalTestSchema.UserTasks WHERE TaskId = " + id.ToString() + "AND userId = " + userId;
-        UserTask response = _dapper.loadDataSingle<UserTask>(sql);
-        return response;
+        UserTask response = _dapper.loadDataSingle<UserTask>(sql) ?? throw new Exception("No task found");
+        return Ok(new
+        {
+            task = response
+        });
     }
 
     [HttpPost("CreateTask")]
@@ -77,7 +80,7 @@ public class TaskController : ControllerBase
 
         if (_dapper.ExecuteSql(sql))
         {
-               return Ok(new
+            return Ok(new
             {
                 message = "Task successfully updated"
             });
@@ -99,7 +102,7 @@ public class TaskController : ControllerBase
         string sql = @"DELETE FROM AxaTechnicalTestSchema.UserTasks WHERE TaskId = " + taskIdFromDB;
         if (_dapper.ExecuteSql(sql))
         {
-               return Ok(new
+            return Ok(new
             {
                 message = "Task successfully deleted"
             });
